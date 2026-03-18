@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CoffeePro</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', sans-serif; }
+body { background:#f5f3f0; overflow-x:hidden; }
+
+/* HEADER & NAV */
+header {
+    background:#3e2723;
+    color:white;
+    padding:15px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:relative;
+    z-index:2;
+}
+
+nav a {
+    color:white;
+    margin:0 10px;
+    text-decoration:none;
+    cursor:pointer;
+}
+
+/* FLOATING COFFEE */
+.floating img {
+    position:fixed;
+    width:60px;
+    opacity:0.6;
+    animation: float 6s infinite;
+    z-index:0;
+}
+.floating img:nth-child(1){ top:10%; left:5%; }
+.floating img:nth-child(2){ top:40%; right:8%; }
+.floating img:nth-child(3){ bottom:15%; left:20%; }
+
+@keyframes float { 50% { transform:translateY(-20px); } }
+
+/* PAGE SECTIONS */
+section { display:none; padding:30px; position:relative; z-index:1; }
+section.active { display:block; }
+
+/* HERO */
+.hero {
+    height:80vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    text-align:center;
+    background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.6)),
+    url('https://images.unsplash.com/photo-1509042239860-f550ce710b93') center/cover;
+}
+
+/* GRID FOR MENU */
+.grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.card {
+    background:white;
+    padding:15px;
+    border-radius:10px;
+    text-align:center;
+    transition:0.3s;
+}
+
+.card:hover {
+    transform:translateY(-8px) scale(1.03);
+}
+
+.card img { width:100%; border-radius:10px; }
+
+/* CART */
+.cart-item { display:flex; justify-content:space-between; background:white; padding:10px; margin:10px 0; border-radius:5px; }
+
+/* FORMS */
+.form-box { max-width:500px; margin:auto; background:white; padding:20px; border-radius:10px; }
+input, textarea { width:100%; padding:10px; margin:10px 0; border-radius:5px; border:1px solid #ccc; }
+
+button { background:#6d4c41; color:white; border:none; padding:10px; cursor:pointer; border-radius:5px; }
+
+.msg { color:green; text-align:center; margin-top:5px; }
+</style>
+</head>
+<body>
+
+<!-- FLOATING COFFEE -->
+<div class="floating">
+    <img src="https://cdn-icons-png.flaticon.com/512/924/924514.png">
+    <img src="https://cdn-icons-png.flaticon.com/512/3050/3050153.png">
+    <img src="https://cdn-icons-png.flaticon.com/512/590/590836.png">
+</div>
+
+<!-- HEADER -->
+<header>
+    <h2>☕ Coffee Corner</h2>
+    <nav>
+        <a onclick="showPage('home')">Home</a>
+        <a onclick="showPage('about')">About</a>
+        <a onclick="showPage('menu')">Menu</a>
+        <a onclick="showPage('cart')">Cart (<span id="count">0</span>)</a>                         </a>
+        <a onclick="showPage('contact')">Contact</a>
+    </nav>
+</header>
+
+<!-- HOME -->
+<section id="home" class="active">
+    <div class="hero">
+        <h1>Premium Coffee Experience ☕</h1>
+        <p>Enjoy 10+ coffee varieties</p>
+        <button onclick="showPage('menu')">Explore Menu</button>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+    <h2>About Us</h2>
+    
+    <div class="about-images">
+        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93" alt="Coffee Cup">
+        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085" alt="Coffee Beans">
+        <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348" alt="Latte Art">
+        <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31" alt="Cafe Setup">
+    </div>
+
+    <p>
+        Welcome to our online coffee shop, where every cup tells a story of passion, quality, and craftsmanship. 
+        We carefully source the finest coffee beans from around the world and roast them to perfection to bring out rich flavors and aromas. 
+        Our handcrafted blends are designed to give you a premium café experience right at home. 
+        Whether you love a bold espresso or a smooth latte, we are here to make every sip unforgettable. 
+        Enjoy convenience, freshness, and happiness delivered straight to your door.
+    </p>
+</section>
+
+<style>
+#about {
+    padding: 60px 20px;
+    text-align: center;
+    background: #fdf6f0;
+}
+
+#about h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #4b2e2e;
+}
+
+.about-images {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.about-images img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Hover Effect */
+.about-images img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+#about p {
+    max-width: 800px;
+    margin: auto;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #333;
+}
+
+/* Mobile Optimization */
+@media (max-width: 600px) {
+    #about h2 {
+        font-size: 2rem;
+    }
+    .about-images img {
+        height: 180px;
+    }
+}
+</style>
+
+
+<!-- MENU -->
+<section id="menu">
+    <h2 style="text-align:center;">Our Coffee Menu</h2>
+    <div id="products" class="grid"></div>
+</section>
+
+<!-- CART -->
+<section id="cart">
+    <h2>Your Cart</h2>
+    <div id="cartItems"></div>
+    <h3>Total: $<span id="total">0</span></h3>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+    <h2>Contact Us</h2>
+    <div class="form-box">
+        <form onsubmit="contactForm(event)">
+            <input placeholder="Name" required>
+            <input type="email" placeholder="Email" required>
+            <textarea placeholder="Message"></textarea>
+            <button>Send</button>
+        </form>
+        <p id="contactMsg" class="msg"></p>
+    </div>
+
+    <h2>Suggestions / Complaints</h2>
+    <div class="form-box">
+        <form onsubmit="feedbackForm(event)">
+            <textarea placeholder="Your feedback"></textarea>
+            <button>Submit</button>
+        </form>
+        <p id="feedbackMsg" class="msg"></p>
+    </div>
+</section>
+
+<script>
+// PRODUCTS
+let products = [
+{name:"Espresso", price:5, img:"https://images.unsplash.com/photo-1511920170033-f8396924c348"},
+{name:"Latte", price:7, img:"https://images.unsplash.com/photo-1495474472287-4d71bcdd2085"},
+{name:"Cappuccino", price:6, img:"https://images.unsplash.com/photo-1509042239860-f550ce710b93"},
+{name:"Americano", price:4, img:"https://images.unsplash.com/photo-1461023058943-07fcbe16d735"},
+{name:"Mocha", price:8, img:"https://images.unsplash.com/photo-1504753793650-d4a2b783c15e"},
+{name:"Macchiato", price:6, img:"https://images.unsplash.com/photo-1485808191679-5f86510681a2"},
+{name:"Flat White", price:7, img:"https://images.unsplash.com/photo-1523942839745-7848d3a0f2b8"},
+{name:"Cold Brew", price:5, img:"https://images.unsplash.com/photo-1517701604599-bb29b565090c"},
+{name:"Iced Latte", price:6, img:"https://images.unsplash.com/photo-1461988625982-7e46a099bf4f"},
+{name:"Turkish Coffee", price:9, img:"https://images.unsplash.com/photo-1498804103079-a6351b050096"}
+];
+
+let cart=[];
+
+// SHOW PAGE FUNCTION
+function showPage(id){
+    document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+}
+
+// RENDER MENU
+function renderProducts(){
+    let html="";
+    products.forEach((p,i)=>{
+        html+=`<div class="card">
+        <img src="${p.img}">
+        <h3>${p.name}</h3>
+        <p>$${p.price}</p>
+        <button onclick="addToCart(${i})">Add</button>
+        </div>`;
+    });
+    document.getElementById("products").innerHTML=html;
+}
+renderProducts();
+
+// CART FUNCTIONS
+function addToCart(i){
+    cart.push(products[i]);
+    updateCart();
+}
+
+function updateCart(){
+    let html="", total=0;
+    cart.forEach((item,i)=>{
+        total+=item.price;
+        html+=`<div class="cart-item">
+        ${item.name} - $${item.price}
+        <button onclick="removeItem(${i})">X</button>
+        </div>`;
+    });
+    document.getElementById("cartItems").innerHTML=html;
+    document.getElementById("total").innerText=total;
+    document.getElementById("count").innerText=cart.length;
+}
+
+function removeItem(i){
+    cart.splice(i,1);
+    updateCart();
+}
+
+// CONTACT & FEEDBACK
+function contactForm(e){ e.preventDefault(); document.getElementById("contactMsg").innerText="Message sent!"; }
+function feedbackForm(e){ e.preventDefault(); document.getElementById("feedbackMsg").innerText="Thanks for feedback!"; }
+
+</script>
+</body>
+</html>
+
+
