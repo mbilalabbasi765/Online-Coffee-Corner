@@ -64,7 +64,20 @@ Online-Coffee-Corner/
 │   └── banner.jpg
 │
 └── README.md
-
-
-
-
+Online-Coffee-Corner/
+├── index.html
+├── menu.html
+├── cart.html
+├── checkout.html
+├── login.html
+│
+├── css/
+│   └── style.css
+├── js/
+│   └── script.js
+├── images/
+│   ├── coffee1.jpg
+│   ├── coffee2.jpg
+│   ├── coffee3.jpg
+│   └── banner.jpg
+└── README.md
